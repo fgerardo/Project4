@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Routes Example</title>
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" 
+rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript"
+src="js/routes.js"></script>
+</head>
+<body onload="initialize()">
+<div>
+<strong>Start:</strong>
+<select id="start" onchange="calcRoute();">
+	<option value="Tampico, Tamaulipas, Mexico">Tampico   </option>
+	<option value="Mexico City, Distrito Federal, Mexico">Mexico City</option>
+	<option value="Veracruz, Veracruz-Llave, Mexico">Veracruz</option>
+	
+	
+	
+	
+</select>
+<strong>End:</strong>
+<select id="end" onchange="calcRoute();">
+	<option value="Tampico, Tamaulipas, Mexico">Tampico</option>
+	<option value="Mexico City, Distrito Federal, Mexico">Mexico City</option>
+	<option value="Veracruz, Veracruz-Llave, Mexico">Veracruz</option>
+	
+</select>
+</div>
+<h3>Distance: <strong id="distance">0</strong> km.</h3>
+<div id="map-canvas"></div>
+</body>
+</html>

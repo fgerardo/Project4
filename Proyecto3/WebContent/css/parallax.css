@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+#header{
+	text-align: center;
+	border-bottom: 3px single gray;
+
+}
+
+.headerBanner{
+	font-family: Arial,Helvetica, sans-serif;
+	font-size: 40px;
+	height: 41px;
+}
+
+.headerSmallText{
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica, sens-serif;
+	font-size: 11px;
+	height: 12px;
+	line-height: 1.09;
+	margin: 0 0 0 8px;
+	padding: 0 0 0 8px;
+	float: right;
+}
+
+#div_map{
+	float: left;
+	width: 70%;
+	padding-left: 1%;
+	padding-right: 1%;
+	min-height: 30em;	
+}
+#left{
+	float: left;
+	width: 10%;
+	min-height: 30em;
+}
+
+#center{
+	float: left;
+	width: 80%;
+	padding-left: 1%;
+	padding-right: 1%;
+	min-height: 30em;
+}
+
+#center-three-column{
+	float: left;
+	width: 70%;
+	padding-left: 2%;
+	padding-right: 1%;
+	min-height: 30em;
+}
+
+#rigth{
+	float:left;
+	width: 10%;
+	padding-left: 2%;
+	padding-right: 1%;
+	min-height: 30em;
+}
+#footer{
+	font-zise: 10px;
+	height: 11px;
+	width: 100%;
+	clear : both;
+	text-align: center;
+}
+	

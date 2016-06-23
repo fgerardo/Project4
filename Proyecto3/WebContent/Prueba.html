@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Prueba</title>
+<script type="text/javascript" 
+src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+
+        function localizar() 
+        {
+            navigator.geolocation.getCurrentPosition(mapa,error);
+        }
+
+        function mapa(pos) 
+        {
+            var contenedor = document.getElementById("mapa");
+            var latitud = 24.213154;
+            var longitud = -98.730059;
+			var latitud2 = pos.coords.latitude;
+			var longitud2 = pos.coords.longitude;
+			
+
+            var centro = new google.maps.LatLng(latitud,longitud);
+
+            var propiedades = {
+				
+                center: centro, 
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                zoom:5,
+
+            };
+
+            var map = new google.maps.Map(contenedor,propiedades);
+			
+			//Planta de Pemex Hidalgo
+			var hgo = new google.maps.LatLng(20.044962, -99.277144);
+			var marhgo = new google.maps.Marker({
+					position: hgo
+					, title: 'Planta de Pemex Hidalgo'
+					, map: map
+					, icon: 'http://localhost:8080/Geolocalizacion/img/oil-drum.png'
+					,
+						});
+						
+					
+					//Informacion Pemex Hidalgo
+					function showInfo1() {
+				
+				var infoHgo = new google.maps.InfoWindow({
+				content: '<h1>Planta de Pemex Hgo</h1>Latitude ='+ hgo.lat()+'</br>' +'Longitude ='+ hgo.lng()}); 
+				 infoHgo.open(map,marhgo);}
+				 google.maps.event.addListener(marhgo, 'click', showInfo1);
+				 
+				 google.maps.event.addListener(map, 'mouseout', function(){
+				 showInfo1.close();
+				 });
+				 
+				 
+				 //Planta Pemex Tamaulipas
+				 var tam = new google.maps.LatLng(22.270790, -97.806341);
+			var martam = new google.maps.Marker({
+					position: tam
+					, title: 'Planta de Pemex Tamaulipas'
+					, map: map
+					, icon: 'http://localhost:8080/Geolocalizacion/img/oil-drum.png'
+					,
+						});
+						
+					
+					//Informacion Pemex Tamaulipas
+					function showInfo() {
+				
+				var infoTama = new google.maps.InfoWindow({
+				content: '<h1>Planta de Pemex Tamaulipas</h1>Latitude ='+ tam.lat()+'</br>' +'Longitude ='+ tam.lng()}); 
+				 infoTama.open(map,martam);}
+				 google.maps.event.addListener(martam, 'click', showInfo);
+				 
+				 google.maps.event.addListener(map, 'mouseout', function(){
+				 showInfo.close();
+				 });
+				 
+				 //Planta Pemex Oaxaca
+				 var oax = new google.maps.LatLng(16.172015, -95.196797);
+			var maroax = new google.maps.Marker({
+					position: oax
+					, title: 'Planta de Pemex Oaxaca'
+					, map: map
+					, icon: 'http://localhost:8080/Geolocalizacion/img/oil-drum.png'
+					,
+						});
+						
+					
+					//Informacion Pemex Oaxaca
+					function showInfo2() {
+				
+				var infoOax = new google.maps.InfoWindow({
+				content: '<h1>Planta de Pemex Oaxaca</h1>Latitude ='+ oax.lat()+'</br>' +'Longitude ='+ oax.lng()}); 
+				 infoOax.open(map,maroax);}
+				 google.maps.event.addListener(maroax, 'click', showInfo2);
+				 
+			
+				var distTO = google.maps.geometry.spherical.computeDistanceBetween(oax, tam);
+				var distTH = google.maps.geometry.spherical.computeDistanceBetween(tam, hgo);
+				var distOH = google.maps.geometry.spherical.computeDistanceBetween(oax, hgo);
+				
+			
+				//Distancia entre Tamaulipas y Oaxaca
+				 var TO = new google.maps.LatLng(18.797760, -96.257070);
+			var marTO = new google.maps.Marker({
+					position: TO
+					, title: 'Distance between Tamaulipas and Oaxaca'
+					, map: map
+					, icon: 'http://localhost:8080/Geolocalizacion/img/display.png'
+					,
+						});
+						
+						//Informacion Distancia Tam Oax
+					function showInfoTO() {
+				
+				var infoTO = new google.maps.InfoWindow({
+				content: '<h1>Distance between Tamaulipas and Oaxaca</h1></br> Click the marker for more information'}); 
+				 infoTO.open(map,marTO);}
+				 google.maps.event.addListener(marTO, 'mouseover', showInfoTO);
+				 
+				 google.maps.event.addListener(marTO, 'click', function(){
+				 
+					alert('planta Tamaulipas \n longitude' + tam.lng()+ '\n'+ 'latitude ='+ tam.lat() +'\n'+
+					'\n planta Oaxaca \n longitude' + oax.lng()+ '\n'+ 'latitude ='+ oax.lat()+ '\n' + '\n Distance = '+ distTO /1000+' KM'+'\n Robots needed = '+ 2);
+				 });
+				 
+				 
+				 //Distancia entre Tamaulipas e Hidalgo
+				 var TH = new google.maps.LatLng(21.148021, -98.620236);
+			var marTH = new google.maps.Marker({
+					position: TH
+					, title: 'Distance between Tamaulipas and Hidalgo'
+					, map: map
+					, icon: 'http://localhost:8080/Geolocalizacion/img/display.png'
+					,
+						});
+						
+						//Informacion Distancia Tam Hgo
+					function showInfoTH() {
+				
+				var infoTH = new google.maps.InfoWindow({
+				content: '<h1>Distance between Tamaulipas and Hidalgo</h1></br> Click the marker for more information'}); 
+				 infoTH.open(map,marTH);}
+				 google.maps.event.addListener(marTH, 'mouseover', showInfoTH);
+				 
+				 google.maps.event.addListener(marTH, 'click', function(){
+				 
+					alert('planta Tamaulipas \n longitude' + tam.lng()+ '\n'+ 'latitude ='+ tam.lat() +'\n'+
+					'\n planta Hidalgo \n longitude' + hgo.lng()+ '\n'+ 'latitude ='+ hgo.lat()+ '\n' + '\n Distance = '+ distTH /1000+' KM'+'\n Robots needed = '+ 1);
+				 });
+				 
+				 
+				 
+				 				 //Distancia entre Oaxaca e Hidalgo
+				 var OH = new google.maps.LatLng(18.362759, -97.471310);
+			var marOH = new google.maps.Marker({
+					position: OH
+					, title: 'Distance between Oaxaca and Hidalgo'
+					, map: map
+					, icon: 'http://localhost:8080/Geolocalizacion/img/display.png'
+					,
+						});
+						
+						//Informacion Distancia Oax Hgo
+					function showInfoOH() {
+				
+				var infoOH = new google.maps.InfoWindow({
+				content: '<h1>Distance between Oaxaca and Hidalgo</h1></br> Click the marker for more information'}); 
+				 infoOH.open(map,marOH);}
+				 google.maps.event.addListener(marOH, 'mouseover', showInfoOH);
+				 
+				 google.maps.event.addListener(marOH, 'click', function(){
+				 
+					alert('planta Oaxaca \n longitude' + oax.lng()+ '\n'+ 'latitude ='+ oax.lat() +'\n'+
+					'\n planta Hidalgo \n longitude' + hgo.lng()+ '\n'+ 'latitude ='+ hgo.lat()+ '\n' + '\n Distance = '+ distOH /1000+' KM'+'\n Robots needed = '+ 2);
+				 });
+				 
+				// alert ('La distancia es = '+ distancia);
+				 				
+			google.maps.event.addListener(maroax, 'click', funcionClick1);
+			
+			google.maps.event.addListener(martam, 'click', funcionClick2);
+			
+			google.maps.event.addListener(marhgo, 'click', funcionClick3);
+				
+				function funcionClick1() {
+					if (maroax.getAnimation() != null) {
+					  maroax.setAnimation(null);
+					} else {
+					  maroax.setAnimation(google.maps.Animation.BOUNCE);
+					}
+				}
+				
+				function funcionClick2() {
+					if (martam.getAnimation() != null) {
+					  martam.setAnimation(null);
+					} else {
+					  martam.setAnimation(google.maps.Animation.BOUNCE);
+					}
+				}
+				
+				function funcionClick3() {
+					if (marhgo.getAnimation() != null) {
+					  marhgo.setAnimation(null);
+					} else {
+					  marhgo.setAnimation(google.maps.Animation.BOUNCE);
+					}
+				}
+            
+        }
+
+        function error(errorC) 
+        {
+            if (errorC.code == 0)
+                alert("Error desconocido");
+            else if (errorC.code == 1)
+                alert("No me dejaste ubicarte") 
+            else if  (errorC.code == 2)
+                alert("Posicion no disponible")
+            else if (errorC.code == 3)
+                alert("Tiempo agotado") 
+        
+         }
+    
+    </script>
+</head>
+<body>
+
+</body>
+</html>
